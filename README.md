@@ -42,6 +42,25 @@ Para atualizar a senha, o usuário deve também enviar um campo de confirmação
 
 Esse desafio **não precisa ser entregue** e não receberá correção, mas você pode ver o resultado do código do desafio aqui: https://github.com/Rocketseat/bootcamp-gostack-desafio-02
 
-Após concluir o desafio, adicionar esse código ao seu Github é uma boa forma de demonstrar seus conhecimentos para oportunidades futuras.
+# Project API - Rocketseat Bootcamp challenge
 
-“Não espere para plantar, apenas tenha paciência para colher”!
+This is a API for Meetup App
+This is the second challenge presented by Rocketseat Bootcamp.
+
+### Language
+
+Node JS
+
+### Packages
+
+- Express js
+- Nodemon
+- JWT
+- YUP
+- Sequelize
+- Postgres
+
+### Features
+
+- Insert, update users
+- Authentication and sessions
