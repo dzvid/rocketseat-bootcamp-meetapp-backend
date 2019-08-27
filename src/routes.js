@@ -1,10 +1,13 @@
 import { Router } from 'express';
 
+import User from './app/models/User';
+
 const routes = new Router();
 
 // ROUTES CONFIGURATION
 
-routes.get('/test', (req, res) => {
+routes.get('/users', (req, res) => {
+  console.log(User.sequelize);
   return res.json({ message: 'Hello world!' });
 });
 
