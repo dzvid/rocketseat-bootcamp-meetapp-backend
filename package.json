@@ -23,6 +23,6 @@
     "sucrase": "^3.10.1"
   },
   "scripts": {
-    "dev": "yarn sucrase-node src/server.js"
+    "dev": "yarn nodemon src/server.js"
   }
 }
