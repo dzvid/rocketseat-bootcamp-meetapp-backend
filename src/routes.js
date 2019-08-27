@@ -1,15 +1,14 @@
 import { Router } from 'express';
 
-import User from './app/models/User';
+// Import User controller
+import UserController from './app/controllers/UserController';
 
 const routes = new Router();
 
 // ROUTES CONFIGURATION
 
-routes.get('/users', (req, res) => {
-  console.log(User.sequelize);
-  return res.json({ message: 'Hello world!' });
-});
+// Cadastro de usuário (POST /users)
+routes.post('/users', UserController.store);
 
 // Export all our routes
 export default routes;
