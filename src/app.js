@@ -2,6 +2,9 @@ import express from 'express';
 
 import routes from './routes';
 
+// Import the models loader
+import './database';
+
 class App {
   constructor() {
     this.server = express();
