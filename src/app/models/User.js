@@ -29,6 +29,12 @@ class User extends Model {
     // Returns the model that was initialized (an instance)
     return this;
   }
+
+  // Checks if a given user password matches with the stored password
+  // Return true if it matches, otherwise false
+  checkPassword(password) {
+    return bcrypt.compare(password, this.password_hash);
+  }
 }
 
 export default User;
