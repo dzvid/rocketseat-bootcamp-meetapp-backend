@@ -11,7 +11,7 @@ const routes = new Router();
 
 // ROUTES CONFIGURATION
 
-// Register (create) user (POST /users)
+// Create (register) user
 routes.post('/users', UserController.store);
 
 // Create user session (generates JWT Token)
@@ -20,8 +20,7 @@ routes.post('/sessions', SessionController.store);
 // Middleware to verify if user is authenticated
 routes.use(authMiddleware);
 
-routes.put('/users', (req, res) => {
-  return res.json({ message: `Update user info, id: ${req.userId} ` });
-});
+// Update user information
+routes.put('/users', UserController.update);
 
 export default routes;
