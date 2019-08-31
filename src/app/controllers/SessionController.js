@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import * as Yup from 'yup';
 
 import User from '../models/User';
 
@@ -8,6 +9,22 @@ import authJWTConfig from '../../config/authJWT';
 class SessionController {
   // Create JWT Token
   async store(req, res) {
+    // Verify and validates user inputs in the request
+    // Create a object schema
+    const schema = Yup.object().shape({
+      email: Yup.string()
+        .email()
+        .required(),
+      password: Yup.string()
+        .min(6)
+        .required(),
+    });
+
+    // Validates input using Yup
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Input validation failed' });
+    }
+
     // Get user authentication data from request
     const { email, password } = req.body;
 

@@ -6,7 +6,26 @@ import User from '../models/User';
 class UserController {
   // Create (register) user (POST /users)
   async store(req, res) {
-    // TODO - Validate input
+    // Verify and validates user inputs in the request
+    // Create a object schema
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      email: Yup.string()
+        .email()
+        .required(),
+      password: Yup.string()
+        .min(6)
+        .required(),
+      confirmPassword: Yup.string()
+        .min(6)
+        .required()
+        .oneOf([Yup.ref('password')]),
+    });
+
+    // Validates input using Yup
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Input validation failed' });
+    }
 
     // SAVE USER TO DATABASE
     // Get user data from request body
@@ -52,7 +71,7 @@ class UserController {
 
     // Validates input using Yup
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation failed' });
+      return res.status(400).json({ error: 'Input validation failed' });
     }
 
     // Get user information from request
