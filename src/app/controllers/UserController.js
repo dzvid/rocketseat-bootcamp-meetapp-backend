@@ -75,16 +75,36 @@ class UserController {
     }
 
     // Get user information from request
-    const { email, oldPassword, password, confirmPassword } = req.body;
+    const {
+      nameReq,
+      emailReq,
+      oldPassword,
+      password,
+      confirmPassword,
+    } = req.body;
+
+    // TODO - Need to refactor user validation in update for email and name (optional values)
+    // Verify if the name was informed by checking for a falsy value
+    // if it wasnt informed then sets value to default (undefined)
+    if (!nameReq) {
+      req.body.name = undefined;
+    }
+
+    if (!emailReq) {
+      req.body.email = undefined;
+    }
 
     // Retrieve current user from database
     // Check if user still exists in database
     const user = await User.findByPk(req.userId);
 
-    // Check if email is different of current user email and if is already in use by other user
-    if (email !== user.email) {
-      const userEmailExists = await User.findOne({ where: { email } });
-
+    // Check if email was declared and
+    // Check if email is different of current user email, then check if it is already in use by other user
+    if (emailReq && emailReq !== user.email) {
+      const userEmailExists = await User.findOne({
+        where: { email: emailReq },
+      });
+      console.log('Beep');
       if (userEmailExists) {
         return res.status(400).json({ error: 'User email already in use' });
       }
@@ -94,7 +114,7 @@ class UserController {
     // this should be have done by Yup)
     // TODO - Verify if user wants to change password
     if (!oldPassword && (password || confirmPassword)) {
-      return res.status(401).json({ error: 'Password is required.' });
+      return res.status(401).json({ error: 'Password is required' });
     }
     // Verify if user password matchs current password
     if (oldPassword && !(await user.checkPassword(oldPassword))) {
@@ -104,7 +124,9 @@ class UserController {
     // After validating user email and password, updates user info
     // then, returns user info: id, name and email
     // TODO - Verify what informations user wants to update and then pass only the parameters to be updated
-    const { id, name } = await user.update(req.body);
+    // TODO - verificar validação do Yup
+    // The method model does not update fields with undefined values
+    const { name, id, email } = await user.update(req.body);
 
     return res.json({ id, name, email });
   }
