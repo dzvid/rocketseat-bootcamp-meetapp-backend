@@ -1,4 +1,4 @@
-# Desafio 02 🚀👨🏻‍🚀 - Iniciando aplicação
+# Desafio 02 🚀👨🏻‍🚀 - Iniciando aplicação MeetApp
 
 Crie uma aplicação do zero utilizando Express.
 
@@ -37,30 +37,3 @@ Para atualizar a senha, o usuário deve também enviar um campo de confirmação
 
 - Criptografe a senha do usuário para segurança.
 - Realize a validação dos dados de entrada;
-
-## Entrega
-
-Esse desafio **não precisa ser entregue** e não receberá correção, mas você pode ver o resultado do código do desafio aqui: https://github.com/Rocketseat/bootcamp-gostack-desafio-02
-
-# Project API - Rocketseat Bootcamp challenge
-
-This is a API for Meetup App
-This is the second challenge presented by Rocketseat Bootcamp.
-
-### Language
-
-Node JS
-
-### Packages
-
-- Express js
-- Nodemon
-- JWT
-- YUP
-- Sequelize
-- Postgres
-
-### Features
-
-- Insert, update users
-- Authentication and sessions
