@@ -1,134 +1,53 @@
-import * as Yup from 'yup';
-
-// Import User model
 import User from '../models/User';
 
 class UserController {
-  // Create (register) user (POST /users)
+  /**
+   * Create a new user. Returns id, name and email of the user created.
+   * If the user already exists, returns an error message.
+   */
   async store(req, res) {
-    // Verify and validates user inputs in the request
-    // Create a object schema
-    const schema = Yup.object().shape({
-      name: Yup.string().required(),
-      email: Yup.string()
-        .email()
-        .required(),
-      password: Yup.string()
-        .min(6)
-        .required(),
-      confirmPassword: Yup.string()
-        .min(6)
-        .required()
-        .oneOf([Yup.ref('password')]),
-    });
+    // Checks if user already exists in the application
+    const userExists = await User.findOne({ where: { email: req.body.email } });
 
-    // Validates input using Yup
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Input validation failed' });
-    }
-
-    // SAVE USER TO DATABASE
-    // Get user data from request body
-    const { name, email, password } = req.body;
-
-    // Checks if user already exists (verify if user email is in the database)
-    const userExists = await User.findOne({ where: { email } });
-
-    // If user exists, returns error message to client
+    // Verify if user exists in database
     if (userExists) {
       return res.status(400).json({ error: 'User already exists' });
     }
     // If user does not exist, register user in the application
-    // and returns some user info to client (at the moment to generate session token)
-    // { name, email, password }) -> req.body
-    const user = await User.create({ name, email, password });
+    const { id, name, email } = await User.create(req.body);
 
-    return res.json({ id: user.id, name, email });
+    return res.json({ id, name, email });
   }
 
-  // Update user information (PUT /users)
+  /**
+   * Update user information (PUT /users)
+   */
   async update(req, res) {
-    // TODO - Verify if inputs are really valid
-    // Example: if oldPassword is not presented then password.when() should disable the field or something
-
-    // Verify if inputs are 'ok'
-    // Create a object schema
-    const schema = Yup.object().shape({
-      name: Yup.string(),
-      email: Yup.string().email(),
-      oldPassword: Yup.string().min(6),
-      password: Yup.string()
-        .min(6)
-        .when('oldPassword', (oldPassword, field) =>
-          oldPassword ? field.required() : field
-        ),
-      confirmPassword: Yup.string()
-        .min(6)
-        .when('password', (password, field) =>
-          password ? field.required().oneOf([Yup.ref('password')]) : field
-        ),
-    });
-
-    // Validates input using Yup
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Input validation failed' });
-    }
-
-    // Get user information from request
-    const {
-      nameReq,
-      emailReq,
-      oldPassword,
-      password,
-      confirmPassword,
-    } = req.body;
-
-    // TODO - Need to refactor user validation in update for email and name (optional values)
-    // Verify if the name was informed by checking for a falsy value
-    // if it wasnt informed then sets value to default (undefined)
-    if (!nameReq) {
-      req.body.name = undefined;
-    }
-
-    if (!emailReq) {
-      req.body.email = undefined;
-    }
-
+    const { email, oldPassword } = req.body;
     // Retrieve current user from database
-    // Check if user still exists in database
     const user = await User.findByPk(req.userId);
 
-    // Check if email was declared and
-    // Check if email is different of current user email, then check if it is already in use by other user
-    if (emailReq && emailReq !== user.email) {
+    // In case user wants to update email, check if email field was declared and
+    // if its already in use by another user
+    if (email && email !== user.email) {
       const userEmailExists = await User.findOne({
-        where: { email: emailReq },
+        where: { email },
       });
-      console.log('Beep');
+
       if (userEmailExists) {
         return res.status(400).json({ error: 'User email already in use' });
       }
     }
 
-    // Verify if user password is falsy (empty, undefined (was not passed on request)
-    // this should be have done by Yup)
-    // TODO - Verify if user wants to change password
-    if (!oldPassword && (password || confirmPassword)) {
-      return res.status(401).json({ error: 'Password is required' });
-    }
-    // Verify if user password matchs current password
+    // In case user wants to udpate the password, verify if user old password matchs current password
     if (oldPassword && !(await user.checkPassword(oldPassword))) {
-      return res.status(401).json({ error: 'Password does not match' });
+      return res.status(401).json({ error: 'Old password does not match' });
     }
 
-    // After validating user email and password, updates user info
-    // then, returns user info: id, name and email
-    // TODO - Verify what informations user wants to update and then pass only the parameters to be updated
-    // TODO - verificar validação do Yup
-    // The method model does not update fields with undefined values
-    const { name, id, email } = await user.update(req.body);
+    // Updates user information
+    const { id, name, email: userEmail } = await user.update(req.body);
 
-    return res.json({ id, name, email });
+    return res.json({ id, name, email: userEmail });
   }
 }
 
