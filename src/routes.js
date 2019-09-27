@@ -1,6 +1,7 @@
 import { Router } from 'express';
+import multer from 'multer';
 
-// Import middleware to check if user is authenticated
+// Middlewares
 import authMiddleware from './app/middlewares/auth';
 
 // Validation middleware
@@ -13,6 +14,12 @@ import SessionSchema from './app/validations/SessionSchema';
 // Controllers
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
+
+// Multer (file upload configuration)
+import multerConfig from './config/multer';
+
+// file upload middleware
+const upload = multer(multerConfig);
 
 const routes = new Router();
 
@@ -41,5 +48,9 @@ routes.put(
   schemaValidator(UserSchema.update, 'body'),
   UserController.update
 );
+
+routes.post('/files', upload.single('file'), (req, res) => {
+  res.json({ message: 'file uploaded' });
+});
 
 export default routes;
