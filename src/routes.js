@@ -14,6 +14,7 @@ import SessionSchema from './app/validations/SessionSchema';
 // Controllers
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
+import FileController from './app/controllers/FileController';
 
 // Multer (file upload configuration)
 import multerConfig from './config/multer';
@@ -49,8 +50,7 @@ routes.put(
   UserController.update
 );
 
-routes.post('/files', upload.single('file'), (req, res) => {
-  res.json({ message: 'file uploaded' });
-});
+// File upload
+routes.post('/files', upload.single('file'), FileController.store);
 
 export default routes;
