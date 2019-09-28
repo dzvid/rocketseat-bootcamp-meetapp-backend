@@ -10,6 +10,7 @@ import schemaValidator from './app/middlewares/schemaValidator';
 // Validation schemas
 import UserSchema from './app/validations/UserSchema';
 import SessionSchema from './app/validations/SessionSchema';
+import FileSchema from './app/validations/FileSchema';
 
 // Controllers
 import UserController from './app/controllers/UserController';
@@ -51,6 +52,11 @@ routes.put(
 );
 
 // File upload
-routes.post('/files', upload.single('file'), FileController.store);
+routes.post(
+  '/files',
+  upload.single('file'),
+  schemaValidator(FileSchema.store, 'file'),
+  FileController.store
+);
 
 export default routes;

@@ -58,12 +58,12 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
     - [x] Configurar multer
     - [x] Criar middleware de upload
     - [x] Criar rota de upload '/file'
-    - [ ] Criar model para persistir informações dos arquivos: File.js
+    - [x] Criar model para persistir informações dos arquivos: File.js
         - [x] Criar migration de arquivos: name=create-files
         - [x] Importar model no Model loader
     - [x] Criar controller para tratar os arquivos: FileController.js
-    - [ ] Configurar acesso estatico aos arquivos
-    - [ ] Validate file upload
+    - [x] Configurar acesso estatico aos arquivos
+    - [x] Validar requisição de upload de arquivo
 
 
 ### Gerenciamento de meetups

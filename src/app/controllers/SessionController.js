@@ -6,7 +6,9 @@ import User from '../models/User';
 import authJWTConfig from '../../config/authJWT';
 
 class SessionController {
-  // Create JWT Token
+  /**
+   * Creates a new JWT Token for an user, then returns it to the client.
+   */
   async store(req, res) {
     // Get user authentication data from request
     const { email, password } = req.body;
@@ -29,7 +31,6 @@ class SessionController {
       expiresIn: authJWTConfig.expiresIn,
     });
 
-    // Returns user (id, name, email) and the jwt token generated
     return res.json({
       user: {
         id,
