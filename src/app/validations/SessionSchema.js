@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+// store: needs to validate only body content
 
 const SessionSchema = {
   store: Yup.object().shape({

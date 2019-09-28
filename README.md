@@ -54,7 +54,17 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
 
 ### Gerenciamento de arquivos
 
-Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nome do arquivo e retorna todos dados do arquivo cadastrado.
+- [x] Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nome do arquivo e retorna todos dados do arquivo cadastrado.
+    - [x] Configurar multer
+    - [x] Criar middleware de upload
+    - [x] Criar rota de upload '/file'
+    - [x] Criar model para persistir informações dos arquivos: File.js
+        - [x] Criar migration de arquivos: name=create-files
+        - [x] Importar model no Model loader
+    - [x] Criar controller para tratar os arquivos: FileController.js
+    - [x] Configurar acesso estatico aos arquivos
+    - [x] Validar requisição de upload de arquivo
+
 
 ### Gerenciamento de meetups
 

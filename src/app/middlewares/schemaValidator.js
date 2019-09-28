@@ -1,21 +1,19 @@
 /**
- * Middleware to validate the request content according to a given schema and
- * request property.
- * @param {*} schema - The validation schema
- * @param {*} property - Request property (body, query or params) to be validated
+ * Middleware to validate the request content according to a given schema. The schema
+ * has the fields to be validated for the defined property.
+ * @param {*} schema - The validation schema for certain request.
+ * @param {*} property - A property contained in the request (req) to be validated (e.g.: body, headers, file, etc).
  */
 const schemaValidator = (schema, property) => {
   return async (req, res, next) => {
-    // TODO: Since property is 'hardcoded', it is necessary to make sure that
-    // property is one of the tree values: body, query or params
     try {
       await schema.validate(req[property], { abortEarly: false });
 
       // if validation is successful, continue to next middleware
       return next();
-    } catch (exception) {
+    } catch (err) {
       // Validation failed
-      const errors = exception.inner.map(({ path, message }) => ({
+      const errors = err.inner.map(({ path, message }) => ({
         field: path,
         message,
       }));

@@ -57,10 +57,10 @@ const UserSchema = {
                 [Yup.ref('password')],
                 "'password' and 'confirmation password' does not match'"
               )
-          : // Verify if confirmation password was informed
+          : // else, Verify if confirmation password was informed
             field.test(
               'is-empty',
-              "New 'password' field was not informed",
+              "'password' field was not informed",
               value => !value
             )
       ),
