@@ -74,18 +74,23 @@ O usuário pode cadastrar meetups na plataforma com título do meetup, descriç�
 - [x] Criar migration de meetups, create FK for banner and user.
 - [x] Criar model de meetups e carregar no model loader.
 - [x] Criar controller de meetups.
-  - Installed date-fns
-- [x] Criar validador de meetups.
+  - Instalei date-fns
+- [x] Validar create.
 
 - [x] Não deve ser possível cadastrar meetups com datas que já passaram.
 
-feat: update
+feat: update user organized meetup
 
-- O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
+[x] O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
+[x] Validar update
 
-- (feat: index) Crie uma rota para listar os meetups que são organizados pelo usuário logado.
+feat: list (index) user organized meetups
 
-- (feat: delete) O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
+[ ] Crie uma rota para listar os meetups que são organizados pelo usuário logado.
+
+- feat: delete user organized meetup
+
+  [ ] O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
 
 ### Inscrição no meetup
 

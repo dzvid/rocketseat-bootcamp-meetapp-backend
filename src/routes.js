@@ -60,6 +60,14 @@ routes.post(
   MeetupController.store
 );
 
+// Update a meetup
+routes.put(
+  '/meetups/:id',
+  schemaValidator(MeetupSchema.update, 'body'),
+  schemaValidator(MeetupSchema.update, 'params'),
+  MeetupController.update
+);
+
 // File upload
 routes.post(
   '/files',
