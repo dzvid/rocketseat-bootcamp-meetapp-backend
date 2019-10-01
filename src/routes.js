@@ -11,11 +11,13 @@ import schemaValidator from './app/middlewares/schemaValidator';
 import UserSchema from './app/validations/UserSchema';
 import SessionSchema from './app/validations/SessionSchema';
 import FileSchema from './app/validations/FileSchema';
+import MeetupSchema from './app/validations/MeetupSchema';
 
 // Controllers
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
+import MeetupController from './app/controllers/MeetupController';
 
 // Multer (file upload configuration)
 import multerConfig from './config/multer';
@@ -27,7 +29,7 @@ const routes = new Router();
 
 // ROUTES CONFIGURATION
 
-// Create (register) user
+// Create user
 routes.post(
   '/users',
   schemaValidator(UserSchema.store, 'body'),
@@ -49,6 +51,13 @@ routes.put(
   '/users',
   schemaValidator(UserSchema.update, 'body'),
   UserController.update
+);
+
+// Creates a new meetup
+routes.post(
+  '/meetups',
+  schemaValidator(MeetupSchema.store, 'body'),
+  MeetupController.store
 );
 
 // File upload

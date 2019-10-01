@@ -55,28 +55,37 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
 ### Gerenciamento de arquivos
 
 - [x] Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nome do arquivo e retorna todos dados do arquivo cadastrado.
-    - [x] Configurar multer
-    - [x] Criar middleware de upload
-    - [x] Criar rota de upload '/file'
-    - [x] Criar model para persistir informações dos arquivos: File.js
-        - [x] Criar migration de arquivos: name=create-files
-        - [x] Importar model no Model loader
-    - [x] Criar controller para tratar os arquivos: FileController.js
-    - [x] Configurar acesso estatico aos arquivos
-    - [x] Validar requisição de upload de arquivo
-
+  - [x] Configurar multer
+  - [x] Criar middleware de upload
+  - [x] Criar rota de upload '/file'
+  - [x] Criar model para persistir informações dos arquivos: File.js
+    - [x] Criar migration de arquivos: name=create-files
+    - [x] Importar model no Model loader
+  - [x] Criar controller para tratar os arquivos: FileController.js
+  - [x] Configurar acesso estatico aos arquivos
+  - [x] Validar requisição de upload de arquivo
 
 ### Gerenciamento de meetups
 
-O usuário pode cadastrar meetups na plataforma com título do meetup, descrição, localização, data e hora e imagem (banner). Todos campos são obrigatórios. Adicione também um campo user_id que armazena o ID do usuário que organiza o evento.
+feat: create meetups
 
-Não deve ser possível cadastrar meetups com datas que já passaram.
+O usuário pode cadastrar meetups na plataforma com título do meetup, descrição (limitada a 1000 caracteres), localização, data e hora e imagem (banner). Todos campos são obrigatórios. Adicione também um campo user_id que armazena o ID do usuário que organiza o evento.
 
-O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
+- [x] Criar migration de meetups, create FK for banner and user.
+- [x] Criar model de meetups e carregar no model loader.
+- [x] Criar controller de meetups.
+  - Installed date-fns
+- [x] Criar validador de meetups.
 
-Crie uma rota para listar os meetups que são organizados pelo usuário logado.
+- [x] Não deve ser possível cadastrar meetups com datas que já passaram.
 
-O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
+feat: update
+
+- O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
+
+- (feat: index) Crie uma rota para listar os meetups que são organizados pelo usuário logado.
+
+- (feat: delete) O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
 
 ### Inscrição no meetup
 

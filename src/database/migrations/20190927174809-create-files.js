@@ -9,19 +9,15 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-
       name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-
       path: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-
-      // TIMESTAMPS
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
