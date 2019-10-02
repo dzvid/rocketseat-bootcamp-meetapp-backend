@@ -69,6 +69,13 @@ routes.put(
   MeetupController.update
 );
 
+// Delete a meetup
+routes.delete(
+  '/meetups/:id',
+  schemaValidator(MeetupSchema.delete, 'params'),
+  MeetupController.delete
+);
+
 // List meetups organized by the logged user
 routes.get('/organizes', OrganizeController.index);
 

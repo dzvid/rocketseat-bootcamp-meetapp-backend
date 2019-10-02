@@ -91,7 +91,8 @@ feat: list (OrganizeController.index) user organized meetups
 
 - feat: delete user organized meetup
 
-  [ ] O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
+  [x] O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
+  [x] Validar delete
 
 ### Inscrição no meetup
 

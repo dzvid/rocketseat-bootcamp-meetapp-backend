@@ -57,6 +57,15 @@ const MeetupSchema = {
         .required(),
     }),
   },
+  delete: {
+    params: Yup.object().shape({
+      id: Yup.number()
+        .typeError('params.id must be a number')
+        .positive()
+        .integer()
+        .required(),
+    }),
+  },
 };
 
 export default MeetupSchema;
