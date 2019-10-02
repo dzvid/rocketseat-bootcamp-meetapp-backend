@@ -84,9 +84,10 @@ feat: update user organized meetup
 [x] O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
 [x] Validar update
 
-feat: list (index) user organized meetups
+feat: list (OrganizeController.index) user organized meetups
 
-[ ] Crie uma rota para listar os meetups que são organizados pelo usuário logado.
+[x] Crie uma rota para listar os meetups que são organizados pelo usuário logado.
+[x] Não precisa validar input (middleware de autenticação valida o usuário).
 
 - feat: delete user organized meetup
 

@@ -18,6 +18,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import MeetupController from './app/controllers/MeetupController';
+import OrganizeController from './app/controllers/OrganizeController';
 
 // Multer (file upload configuration)
 import multerConfig from './config/multer';
@@ -67,6 +68,9 @@ routes.put(
   schemaValidator(MeetupSchema.update, 'params'),
   MeetupController.update
 );
+
+// List meetups organized by the logged user
+routes.get('/organizes', OrganizeController.index);
 
 // File upload
 routes.post(
