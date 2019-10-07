@@ -1,7 +1,16 @@
-import { isBefore, startOfHour, parseISO } from 'date-fns';
+import {
+  isBefore,
+  startOfHour,
+  parseISO,
+  startOfDay,
+  endOfDay,
+} from 'date-fns';
+
+import { Op } from 'sequelize';
 
 import Meetup from '../models/Meetup';
 import File from '../models/File';
+import User from '../models/User';
 
 class MeetupController {
   /**
@@ -114,6 +123,34 @@ class MeetupController {
     await meetup.destroy();
 
     return res.json({ message: 'Meetup deleted successfully' });
+  }
+
+  /**
+   * Allows a user to list meetups by date (not by hour).
+   */
+  async index(req, res) {
+    // In case page wasnt declared, defaults to 1
+    const page = req.query.page || 1;
+    const searchDate = parseISO(req.query.date);
+
+    const meetups = await Meetup.findAll({
+      where: {
+        date: {
+          [Op.between]: [startOfDay(searchDate), endOfDay(searchDate)],
+        },
+      },
+      include: [
+        {
+          model: User,
+          as: 'organizer',
+          attributes: ['name', 'email'],
+        },
+      ],
+      limit: 10,
+      offset: 10 * page - 10,
+    });
+
+    return res.json(meetups);
   }
 }
 

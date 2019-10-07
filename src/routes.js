@@ -63,6 +63,13 @@ routes.post(
   MeetupController.store
 );
 
+// List meetups happening in a given date.
+routes.get(
+  '/meetups',
+  schemaValidator(MeetupSchema.index, 'query'),
+  MeetupController.index
+);
+
 // Update a meetup
 routes.put(
   '/meetups/:id',
