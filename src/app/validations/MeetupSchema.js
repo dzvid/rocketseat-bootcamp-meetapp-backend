@@ -66,6 +66,13 @@ const MeetupSchema = {
         .required(),
     }),
   },
+  index: {
+    query: Yup.object().shape({
+      date: Yup.date()
+        .typeError('date must be a date type')
+        .required(),
+    }),
+  },
 };
 
 export default MeetupSchema;
