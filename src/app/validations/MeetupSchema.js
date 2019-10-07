@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 
 const MeetupSchema = {
-  store: Yup.object().shape({
-    title: {
-      body: Yup.string()
+  store: {
+    body: Yup.object().shape({
+      title: Yup.string()
         .typeError('title must be a string')
         .max(255)
         .required(),
@@ -23,8 +23,8 @@ const MeetupSchema = {
         .positive()
         .integer()
         .required(),
-    },
-  }),
+    }),
+  },
 
   update: {
     body: Yup.object().shape({

@@ -3,12 +3,13 @@ import Sequelize from 'sequelize';
 import User from '../app/models/User';
 import File from '../app/models/File';
 import Meetup from '../app/models/Meetup';
+import Subscription from '../app/models/Subscription';
 
 // Import the database configuration
 import databaseConfig from '../config/database';
 
 // Group all models in a array
-const models = [User, File, Meetup];
+const models = [User, File, Meetup, Subscription];
 
 // Model loader: Connects to the database and loads all the models (maps bd tables to Models)
 class Database {

@@ -15,7 +15,7 @@ const MAX_IMAGE_FILE_SIZE = { value: 2097152, toMB: '2MB' };
 
 const FileSchema = {
   store: {
-    body: Yup.object().shape({
+    file: Yup.object().shape({
       mimetype: Yup.string()
         .required('Image file is required')
         .test('valid-mimetype', 'Unsupported file type', value =>

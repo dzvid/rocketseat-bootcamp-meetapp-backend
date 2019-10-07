@@ -12,6 +12,7 @@ import UserSchema from './app/validations/UserSchema';
 import SessionSchema from './app/validations/SessionSchema';
 import FileSchema from './app/validations/FileSchema';
 import MeetupSchema from './app/validations/MeetupSchema';
+import SubscriptionSchema from './app/validations/SubscriptionSchema';
 
 // Controllers
 import UserController from './app/controllers/UserController';
@@ -19,6 +20,7 @@ import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import MeetupController from './app/controllers/MeetupController';
 import OrganizeController from './app/controllers/OrganizeController';
+import SubscriptionController from './app/controllers/SubscriptionController';
 
 // Multer (file upload configuration)
 import multerConfig from './config/multer';
@@ -78,6 +80,13 @@ routes.delete(
 
 // List meetups organized by the logged user
 routes.get('/organizes', OrganizeController.index);
+
+// Subscribe a user to a meetup
+routes.post(
+  '/subscriptions',
+  schemaValidator(SubscriptionSchema.store, 'body'),
+  SubscriptionController.store
+);
 
 // File upload
 routes.post(
