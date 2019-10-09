@@ -4,13 +4,24 @@ import Subscription from '../models/Subscription';
 import User from '../models/User';
 import Meetup from '../models/Meetup';
 
+import Queue from '../../lib/Queue';
+import SubscriptionMail from '../jobs/SubscriptionMail';
+
 class SubscriptionController {
   /**
    * Allows a user to subscribe to a meetup.
    */
   async store(req, res) {
     const user = await User.findByPk(req.userId);
-    const meetup = await Meetup.findByPk(req.body.meetup_id);
+    const meetup = await Meetup.findByPk(req.body.meetup_id, {
+      include: [
+        {
+          model: User,
+          as: 'organizer',
+          attributes: ['name', 'email'],
+        },
+      ],
+    });
 
     if (!meetup) {
       return res.status(404).json({
@@ -74,12 +85,13 @@ class SubscriptionController {
       });
     }
 
-    // TODO: Send email to meetup organizer
-
     const subscription = await Subscription.create({
       user_id: req.userId,
       meetup_id: req.body.meetup_id,
     });
+
+    // Send email to meetup organizer about new subscription
+    await Queue.add(SubscriptionMail.key, { user, meetup });
 
     return res.json(subscription);
   }
