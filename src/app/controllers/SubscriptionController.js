@@ -1,4 +1,5 @@
 import { isBefore } from 'date-fns';
+import { Op } from 'sequelize';
 import Subscription from '../models/Subscription';
 import User from '../models/User';
 import Meetup from '../models/Meetup';
@@ -59,6 +60,7 @@ class SubscriptionController {
       include: [
         {
           model: Meetup,
+          as: 'meetup',
           where: {
             date: meetup.date,
           },
@@ -80,6 +82,39 @@ class SubscriptionController {
     });
 
     return res.json(subscription);
+  }
+
+  /**
+   * Allows a user to list all future meetups that he is subscribed.
+   */
+  async index(req, res) {
+    const subscriptions = await Subscription.findAll({
+      where: {
+        user_id: req.userId,
+      },
+      include: [
+        {
+          model: Meetup,
+          as: 'meetup',
+          required: true,
+          where: {
+            date: {
+              [Op.gt]: new Date(),
+            },
+          },
+          include: [
+            {
+              model: User,
+              as: 'organizer',
+              attributes: ['name', 'email'],
+            },
+          ],
+          order: [['date', 'ASC']],
+        },
+      ],
+    });
+
+    return res.json(subscriptions);
   }
 }
 

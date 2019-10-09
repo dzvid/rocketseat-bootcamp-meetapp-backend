@@ -85,7 +85,7 @@ routes.delete(
   MeetupController.delete
 );
 
-// List meetups organized by the logged user
+// List meetups organized by the user
 routes.get('/organizes', OrganizeController.index);
 
 // Subscribe a user to a meetup
@@ -94,6 +94,9 @@ routes.post(
   schemaValidator(SubscriptionSchema.store, 'body'),
   SubscriptionController.store
 );
+
+// List all future meetups that a user is subscribed
+routes.get('/subscriptions', SubscriptionController.index);
 
 // File upload
 routes.post(

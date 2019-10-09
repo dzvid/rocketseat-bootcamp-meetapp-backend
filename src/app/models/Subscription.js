@@ -17,9 +17,13 @@ class Subscription extends Model {
   static associate(models) {
     this.belongsTo(models.Meetup, {
       foreignKey: 'meetup_id',
+      as: 'meetup',
+      key: 'id',
     });
     this.belongsTo(models.User, {
       foreignKey: 'user_id',
+      as: 'user',
+      key: 'id',
     });
   }
 }

@@ -144,6 +144,7 @@ class MeetupController {
           model: User,
           as: 'organizer',
           attributes: ['name', 'email'],
+          required: true,
         },
       ],
       limit: 10,
