@@ -14,19 +14,21 @@ const SUPPORTED_IMAGE_FILE_FORMATS = [
 const MAX_IMAGE_FILE_SIZE = { value: 2097152, toMB: '2MB' };
 
 const FileSchema = {
-  store: Yup.object().shape({
-    mimetype: Yup.string()
-      .required('Image file is required')
-      .test('valid-mimetype', 'Unsupported file type', value =>
-        SUPPORTED_IMAGE_FILE_FORMATS.includes(value)
-      ),
+  store: {
+    file: Yup.object().shape({
+      mimetype: Yup.string()
+        .required('Image file is required')
+        .test('valid-mimetype', 'Unsupported file type', value =>
+          SUPPORTED_IMAGE_FILE_FORMATS.includes(value)
+        ),
 
-    size: Yup.number().test(
-      'ok-size',
-      `Max file size allowed is ${MAX_IMAGE_FILE_SIZE.toMB}`,
-      value => value <= MAX_IMAGE_FILE_SIZE.value
-    ),
-  }),
+      size: Yup.number().test(
+        'ok-size',
+        `Max file size allowed is ${MAX_IMAGE_FILE_SIZE.toMB}`,
+        value => value <= MAX_IMAGE_FILE_SIZE.value
+      ),
+    }),
+  },
 };
 
 export default FileSchema;

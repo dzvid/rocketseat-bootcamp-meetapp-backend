@@ -55,44 +55,63 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
 ### Gerenciamento de arquivos
 
 - [x] Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nome do arquivo e retorna todos dados do arquivo cadastrado.
-    - [x] Configurar multer
-    - [x] Criar middleware de upload
-    - [x] Criar rota de upload '/file'
-    - [x] Criar model para persistir informações dos arquivos: File.js
-        - [x] Criar migration de arquivos: name=create-files
-        - [x] Importar model no Model loader
-    - [x] Criar controller para tratar os arquivos: FileController.js
-    - [x] Configurar acesso estatico aos arquivos
-    - [x] Validar requisição de upload de arquivo
-
+  - [x] Configurar multer
+  - [x] Criar middleware de upload
+  - [x] Criar rota de upload '/file'
+  - [x] Criar model para persistir informações dos arquivos: File.js
+    - [x] Criar migration de arquivos: name=create-files
+    - [x] Importar model no Model loader
+  - [x] Criar controller para tratar os arquivos: FileController.js
+  - [x] Configurar acesso estatico aos arquivos
+  - [x] Validar requisição de upload de arquivo
 
 ### Gerenciamento de meetups
 
-O usuário pode cadastrar meetups na plataforma com título do meetup, descrição, localização, data e hora e imagem (banner). Todos campos são obrigatórios. Adicione também um campo user_id que armazena o ID do usuário que organiza o evento.
+feat: create meetups
 
-Não deve ser possível cadastrar meetups com datas que já passaram.
+O usuário pode cadastrar meetups na plataforma com título do meetup, descrição (limitada a 1000 caracteres), localização, data e hora e imagem (banner). Todos campos são obrigatórios. Adicione também um campo user_id que armazena o ID do usuário que organiza o evento.
 
-O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
+- [x] Criar migration de meetups, create FK for banner and user.
+- [x] Criar model de meetups e carregar no model loader.
+- [x] Criar controller de meetups.
+  - Instalei date-fns
+- [x] Validar create.
 
-Crie uma rota para listar os meetups que são organizados pelo usuário logado.
+- [x] Não deve ser possível cadastrar meetups com datas que já passaram.
 
-O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
+feat: update user organized meetup
+
+[x] O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
+[x] Validar update
+
+feat: list (OrganizeController.index) user organized meetups
+
+[x] Crie uma rota para listar os meetups que são organizados pelo usuário logado.
+[x] Não precisa validar input (middleware de autenticação valida o usuário).
+
+- feat: delete user organized meetup
+
+  [x] O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
+  [x] Validar delete
 
 ### Inscrição no meetup
 
-O usuário deve poder se inscrever em meetups que não organiza.
+[x] Create Subscription: migration, model and controller. Import model in the Model loader.
+[x] Validate subscription request.
 
-O usuário não pode se inscrever em meetups que já aconteceram.
+[x] O usuário deve poder se inscrever em meetups que não organiza.
 
-O usuário não pode se inscrever no mesmo meetup duas vezes.
+[x] O usuário não pode se inscrever em meetups que já aconteceram.
 
-O usuário não pode se inscrever em dois meetups que acontecem no mesmo horário.
+[x] O usuário não pode se inscrever no mesmo meetup duas vezes.
 
-Sempre que um usuário se inscrever no meetup, envie um e-mail ao organizador contendo os dados relacionados ao usuário inscrito. O template do e-mail fica por sua conta :)
+[x] O usuário não pode se inscrever em dois meetups que acontecem no mesmo horário.
+
+[ ] Sempre que um usuário se inscrever no meetup, envie um e-mail ao organizador contendo os dados relacionados ao usuário inscrito. O template do e-mail fica por sua conta :)
 
 ### Listagem de meetups
 
-Crie uma rota para listar os meetups com filtro por data (não por hora), os resultados dessa listagem devem vir paginados em 10 itens por página. Abaixo tem um exemplo de chamada para a rota de listagem dos meetups:
+[x] Crie uma rota para listar os meetups com filtro por data (não por hora), os resultados dessa listagem devem vir paginados em 10 itens por página. Abaixo tem um exemplo de chamada para a rota de listagem dos meetups:
 
 ```
 http://localhost:3333/meetups?date=2019-07-01&page=2
@@ -100,13 +119,19 @@ http://localhost:3333/meetups?date=2019-07-01&page=2
 
 Nesse exemplo, listaremos a página 2 dos meetups que acontecerão no dia 01 de Julho.
 
-Nessa listagem retorne também os dados do organizador.
+[x] Nessa listagem retorne também os dados do organizador.
+
+[x] Validate query params.
 
 ### Listagem de inscrições
 
 Crie uma rota para listar os meetups em que o usuário logado está inscrito.
 
 Liste apenas meetups que ainda não passaram e ordene meetups mais próximos como primeiros da lista.
+
+[x] Implement index method
+[x] Create route
+[Not necessary] Create validation
 
 ## Entrega
 
