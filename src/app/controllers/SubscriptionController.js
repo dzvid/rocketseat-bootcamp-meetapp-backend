@@ -74,12 +74,12 @@ class SubscriptionController {
       });
     }
 
-    // TODO: Send email to meetup organizer
-
     const subscription = await Subscription.create({
       user_id: req.userId,
       meetup_id: req.body.meetup_id,
     });
+
+    // TODO: Send email to meetup organizer
 
     return res.json(subscription);
   }
