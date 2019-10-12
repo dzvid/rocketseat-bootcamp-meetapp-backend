@@ -1,6 +1,11 @@
 import express from 'express';
 import path from 'path';
 
+import * as Sentry from '@sentry/node';
+import Youch from 'youch';
+import 'express-async-errors';
+
+import sentryConfig from './config/sentry';
 import routes from './routes';
 
 // Import the models loader
@@ -10,13 +15,21 @@ class App {
   constructor() {
     this.server = express();
 
+    // Sentry monitoring
+    Sentry.init(sentryConfig);
+
     this.middlewares();
     this.routes();
+
+    // Sentry monitoring
+    this.exceptionHandler();
   }
 
   // Method to implement most of the middlewares of the application
   middlewares() {
-    // Configure express to parses incoming requests with JSON payloads
+    // Sentry error handler middleware must be first middleware in the app
+    this.server.use(Sentry.Handlers.requestHandler());
+
     this.server.use(express.json());
 
     // Middleware to serve static files from a given root directory
@@ -30,6 +43,20 @@ class App {
   routes() {
     // Routes
     this.server.use(routes);
+
+    // The error handler must be before any other error middleware and after all controllers
+    this.server.use(Sentry.Handlers.errorHandler());
+  }
+
+  /**
+   * Error handler for the application
+   */
+  exceptionHandler() {
+    this.server.use(async (err, req, res) => {
+      const errors = await new Youch(err, req).toJSON();
+
+      return res.status(500).json(errors);
+    });
   }
 }
 
