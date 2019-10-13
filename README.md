@@ -6,13 +6,6 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-<style>
-div.logo > img{
-  background-color: #000;
-  padding: 20px;
-}
-</style>
-
 <!-- [![Contributors][contributors-shield]][contributors-url] -->
 <!-- [![Forks][forks-shield]][forks-url] -->
 <!-- [![Stargazers][stars-shield]][stars-url] -->
@@ -24,13 +17,13 @@ div.logo > img{
 <!-- PROJECT LOGO -->
 <br />
 
-<div class="logo" align="center">
-  <img src="assets/img/logo-gostack.svg" alt="Logo GoStack" width="80" height="80">
-
-  <img src="assets/img/logo-rocketseat.svg" alt="Logo Rocketseat" width="80" height="80">
-</div>
 
 <p align="center">
+
+
+  <img src="assets/img/logo-rocketseat.svg" alt="Logo Rocketseat" width="156" height="56">
+  <br />
+  <img src="assets/img/logo-gostack.svg" alt="Logo GoStack" width="120" height="120">
 
 
   <h3 align="center"><strong>Meetapp</strong>: Backend</h3>
