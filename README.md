@@ -26,7 +26,7 @@
   <img src="assets/img/logo-gostack.svg" alt="Logo GoStack" width="120" height="120">
 
 
-  <h3 align="center"><strong>Meetapp</strong>: Backend</h3>
+  <h3 align="center"><strong>Meetapp</strong>: Backend (API)</h3>
 
   <p align="center">
     Meetapp helps people to develop together!
