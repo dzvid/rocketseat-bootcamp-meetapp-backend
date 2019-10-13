@@ -50,24 +50,19 @@
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+- [Features (TODO)](#features-todo)
 - [Usage (TODO)](#usage-todo)
-- [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
 - [Acknowledgements](#acknowledgements)
-<!-- - [License](#license) -->
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Meetapp is an application built as a final challenge in Rocketseat bootcamp. The project has 03 parts: Backend, Frontend and Mobile. Here we have the Backend's implementation.
+Meetapp is an application built as a final challenge in Rocketseat bootcamp. The project has 03 parts: Backend, Frontend and Mobile. Here we have the Backend's API implementation.
 
 
 ### Built With
@@ -113,7 +108,6 @@ It is necessary to have installed <a href="https://nodejs.org/en/" target="_blan
   ```bash
   yarn install
   ```
-
 4. Create the docker containers for the database and redis queue (feel free to modify the containers names, passwords and port mapping, just remember to update the enviroment variables values in the <em>.env</em> file):
 
    4.1 Create the PostgreSQL container:
@@ -126,7 +120,14 @@ It is necessary to have installed <a href="https://nodejs.org/en/" target="_blan
     ```
 5. Create and configure the project enviroment variables in the <em>.env</em> file. You can check the <em>[.env.example](/.env.example)</em> file provided that contains the necessary variables to be configured. To configure [mailtrap](https://mailtrap.io/) is necessary to create an account and an inbox in the service.
 
-6. Execute the application (make sure the docker containers are running):
+6.  Create the database named "meetapp" in the PostgreSQL container using Postbird or using SQL.
+
+
+7. Execute the sequelize migrations to create the database tables (make sure the docker containers are running):
+  ```bash
+    yarn sequelize db:migrate
+  ```
+8. Execute the application (make sure the docker containers are running):
    1. In one terminal, execute the queue service:
     ```bash
       yarn queue
@@ -135,19 +136,14 @@ It is necessary to have installed <a href="https://nodejs.org/en/" target="_blan
     ```bash
       yarn dev
     ```
+
+## Features (TODO)
+List of features and known issues.
+
 <!-- USAGE EXAMPLES -->
 ## Usage (TODO)
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/tukno/rocketseat-bootcamp-meetapp-backend/issues) for a list of proposed features (and known issues).
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -177,9 +173,7 @@ Project Link: [https://github.com/tukno/rocketseat-bootcamp-meetapp-backend](htt
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
-* []()
+* [Best README Template](https://github.com/othneildrew/Best-README-Template): An awesome README template to jumpstart your projects!
 
 
 
