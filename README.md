@@ -1,138 +1,200 @@
-# Desafio 02 🚀👨🏻‍🚀 - Iniciando aplicação MeetApp
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+<style>
+div.logo > img{
+  background-color: #000;
+  padding: 20px;
+}
+</style>
 
-Crie uma aplicação do zero utilizando Express.
+<!-- [![Contributors][contributors-shield]][contributors-url] -->
+<!-- [![Forks][forks-shield]][forks-url] -->
+<!-- [![Stargazers][stars-shield]][stars-url] -->
+<!-- [![Issues][issues-shield]][issues-url] -->
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-Nessa aplicação configure as seguintes ferramentas:
 
-- Sucrase + Nodemon;
-- ESLint + Prettier + EditorConfig;
-- Sequelize (Utilize PostgresSQL ou MySQL);
+<!-- PROJECT LOGO -->
+<br />
 
-Durante esse desafio você dará início a um novo projeto no Bootcamp, esse projeto será desenvolvido aos poucos até o fim da sua jornada onde você terá uma aplicação completa envolvendo back-end, front-end e mobile.
+<div class="logo" align="center">
+  <img src="assets/img/logo-gostack.svg" alt="Logo GoStack" width="80" height="80">
 
-Esse projeto também será utilizado para a certificação do bootcamp, então bora pro código!
+  <img src="assets/img/logo-rocketseat.svg" alt="Logo Rocketseat" width="80" height="80">
+</div>
 
-## Aplicação
+<p align="center">
 
-A aplicação que iremos dar início ao desenvolvimento a partir de agora é um app agregador de eventos para desenvolvedores chamado Meetapp (um acrônimo à Meetup + App).
 
-Nesse primeiro desafio vamos criar algumas funcionalidades básicas que aprendemos ao longo das aulas até aqui.
+  <h3 align="center"><strong>Meetapp</strong>: Backend</h3>
 
-## Funcionalidades
+  <p align="center">
+    Meetapp helps people to develop together!
+    <!-- <br />
+    <a href="#"><strong>Explore the docs »</strong></a>
+    <br /> -->
+    <br />
+    <a href="#">View Demo</a>
+  </p>
+</p>
 
-Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplicação.
 
-### Autenticação
 
-Permita que um usuário se autentique em sua aplicação utilizando e-mail e senha.
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-- A autenticação deve ser feita utilizando JWT.
-- Realize a validação dos dados de entrada;
+- [Table of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
+  - [Built With](#built-with)
+  - [Coding Style](#coding-style)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage (TODO)](#usage-todo)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgements](#acknowledgements)
+<!-- - [License](#license) -->
+- [Contact](#contact)
+- [Acknowledgements](#acknowledgements)
 
-### Cadastro e atualização de usuários
 
-Permita que novos usuários se cadastrem em sua aplicação utilizando nome, e-mail e senha.
 
-Para atualizar a senha, o usuário deve também enviar um campo de confirmação com a mesma senha.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-- Criptografe a senha do usuário para segurança.
-- Realize a validação dos dados de entrada;
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-## Entrega
+Meetapp is an application built as a final challenge in Rocketseat bootcamp. The project has 03 parts: Backend, Frontend and Mobile. Here we have the Backend's implementation.
 
-Esse desafio **não precisa ser entregue** e não receberá correção, mas você pode ver o resultado do código do desafio aqui: https://github.com/Rocketseat/bootcamp-gostack-desafio-02
 
----
+### Built With
+Tools used:
+* [Node.js](https://nodejs.org)
+* [Express](https://github.com/expressjs/express)
+* [PostgreSQL](https://www.postgresql.org/) + [Sequelize (SQL ORM for Node.js)](https://github.com/sequelize/sequelize)
+* [Docker](https://www.docker.com/)
+* [Redis](https://redis.io/) + [Bee queue](https://github.com/bee-queue/bee-queue)
+* [Sucrase](https://github.com/alangpierce/sucrase)
+* [Nodemon](https://nodemon.io/)
 
-# Desafio 03. Continuando aplicação
+### Coding Style
 
-Durante esse desafio vamos aprimorar a aplicação Meetapp que demos início no desafio anterior implementando funcionalidades que aprendemos durante as aulas até agora.
+* We adopt [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) in the project development together with [Editor Config](https://editorconfig.org/), [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/). Ah, we also use [VSCode](https://code.visualstudio.com/) as the code editor.
 
-## Funcionalidades
+<!-- GETTING STARTED -->
+## Getting Started
 
-Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplicação.
+To get a local copy up and running follow these simple steps.
 
-### Gerenciamento de arquivos
+### Prerequisites
 
-- [x] Crie uma rota para upload de arquivos que cadastra em uma tabela o caminho e nome do arquivo e retorna todos dados do arquivo cadastrado.
-  - [x] Configurar multer
-  - [x] Criar middleware de upload
-  - [x] Criar rota de upload '/file'
-  - [x] Criar model para persistir informações dos arquivos: File.js
-    - [x] Criar migration de arquivos: name=create-files
-    - [x] Importar model no Model loader
-  - [x] Criar controller para tratar os arquivos: FileController.js
-  - [x] Configurar acesso estatico aos arquivos
-  - [x] Validar requisição de upload de arquivo
+It is necessary to have installed <a href="https://nodejs.org/en/" target="_blank">Node.js</a> (v10.16.0 LTS), <a href="https://yarnpkg.com" target="_blank">Yarn</a> (v1.19.1) and <a href="https://yarnpkg.com" target="_blank">Docker</a> (v19.03.3, build a872fc2f86) on your machine to install and execute the project. The versions mentioned were used during the project development and deploy.
 
-### Gerenciamento de meetups
+### Installation
 
-feat: create meetups
+1. Clone the repository:
+  ```bash
+  git clone https://github.com/tukno/rocketseat-bootcamp-meetapp-backend.git
+  ```
 
-O usuário pode cadastrar meetups na plataforma com título do meetup, descrição (limitada a 1000 caracteres), localização, data e hora e imagem (banner). Todos campos são obrigatórios. Adicione também um campo user_id que armazena o ID do usuário que organiza o evento.
+2. Enter in the project root directory:
+  ```bash
+  cd rocketseat-bootcamp-meetapp-backend
+  ```
 
-- [x] Criar migration de meetups, create FK for banner and user.
-- [x] Criar model de meetups e carregar no model loader.
-- [x] Criar controller de meetups.
-  - Instalei date-fns
-- [x] Validar create.
+3. Install all the dependencies of the project using Yarn, run:
+  ```bash
+  yarn
+  ```
+  or
+  ```bash
+  yarn install
+  ```
 
-- [x] Não deve ser possível cadastrar meetups com datas que já passaram.
+4. Create the docker containers for the database and redis queue (feel free to modify the containers names, passwords and port mapping, just remember to update the enviroment variables values in the <em>.env</em> file):
 
-feat: update user organized meetup
+   4.1 Create the PostgreSQL container:
+    ```bash
+      docker run --name db_meetapp -e POSTGRES_PASSWORD=meetappdev -p 5432:5432 -d postgres
+    ```
+    4.2 Create the Redis container:
+    ```bash
+      docker run --name redis_meetapp -p 6379:6379 -d -t redis:alpine
+    ```
+5. Create and configure the project enviroment variables in the <em>.env</em> file. You can check the <em>[.env.example](/.env.example)</em> file provided that contains the necessary variables to be configured. To configure [mailtrap](https://mailtrap.io/) is necessary to create an account and an inbox in the service.
 
-[x] O usuário também deve poder editar todos dados de meetups que ainda não aconteceram e que ele é organizador.
-[x] Validar update
+6. Execute the application (make sure the docker containers are running):
+   1. In one terminal, execute the queue service:
+    ```bash
+      yarn queue
+    ```
+   2. In another terminal, execute the development enviroment:
+    ```bash
+      yarn dev
+    ```
+<!-- USAGE EXAMPLES -->
+## Usage (TODO)
 
-feat: list (OrganizeController.index) user organized meetups
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-[x] Crie uma rota para listar os meetups que são organizados pelo usuário logado.
-[x] Não precisa validar input (middleware de autenticação valida o usuário).
 
-- feat: delete user organized meetup
 
-  [x] O usuário deve poder cancelar meetups organizados por ele e que ainda não aconteceram. O cancelamento deve deletar o meetup da base de dados.
-  [x] Validar delete
+<!-- ROADMAP -->
+## Roadmap
 
-### Inscrição no meetup
+See the [open issues](https://github.com/tukno/rocketseat-bootcamp-meetapp-backend/issues) for a list of proposed features (and known issues).
 
-[x] Create Subscription: migration, model and controller. Import model in the Model loader.
-[x] Validate subscription request.
 
-[x] O usuário deve poder se inscrever em meetups que não organiza.
 
-[x] O usuário não pode se inscrever em meetups que já aconteceram.
+<!-- CONTRIBUTING -->
+## Contributing
 
-[x] O usuário não pode se inscrever no mesmo meetup duas vezes.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-[x] O usuário não pode se inscrever em dois meetups que acontecem no mesmo horário.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-[ ] Sempre que um usuário se inscrever no meetup, envie um e-mail ao organizador contendo os dados relacionados ao usuário inscrito. O template do e-mail fica por sua conta :)
+<!-- LICENSE -->
+## License
 
-### Listagem de meetups
+Distributed under the MIT License. See `LICENSE` for more information.
 
-[x] Crie uma rota para listar os meetups com filtro por data (não por hora), os resultados dessa listagem devem vir paginados em 10 itens por página. Abaixo tem um exemplo de chamada para a rota de listagem dos meetups:
+<!-- CONTACT -->
+## Contact
 
-```
-http://localhost:3333/meetups?date=2019-07-01&page=2
-```
+David Oliveira - oliveiradavid.dev@gmail.com
 
-Nesse exemplo, listaremos a página 2 dos meetups que acontecerão no dia 01 de Julho.
+Project Link: [https://github.com/tukno/rocketseat-bootcamp-meetapp-backend](https://github.com/tukno/rocketseat-bootcamp-meetapp-backend)
 
-[x] Nessa listagem retorne também os dados do organizador.
 
-[x] Validate query params.
 
-### Listagem de inscrições
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
 
-Crie uma rota para listar os meetups em que o usuário logado está inscrito.
+* []()
+* []()
+* []()
 
-Liste apenas meetups que ainda não passaram e ordene meetups mais próximos como primeiros da lista.
 
-[x] Implement index method
-[x] Create route
-[Not necessary] Create validation
 
-## Entrega
 
-Esse desafio **não precisa ser entregue** e não receberá correção, mas você pode ver o resultado do código do desafio aqui: https://github.com/Rocketseat/bootcamp-gostack-desafio-03
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[license-shield]: https://img.shields.io/github/license/tukno/rocketseat-bootcamp-meetapp-backend.svg?style=flat-square
+[license-url]: https://github.com/tukno/rocketseat-bootcamp-meetapp-backend/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/oliveiradav
